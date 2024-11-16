@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import programDate from './data/programsData.json'
+import ProgramList from "./page/ProgramList";
+import Pagination from './component/Pagination';
+import { GlobalStyles } from './styles/GlobalStyles';
 
-function App() {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setitemsPerPage] = useState(50);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyles />
+      <h1> 프로그램 </h1>
+      <ProgramList currentPage={currentPage} itemsPerPage={itemsPerPage} />
+      <Pagination date={programDate} currentPage={currentPage} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage} />
     </div>
   );
 }
-
-export default App;
